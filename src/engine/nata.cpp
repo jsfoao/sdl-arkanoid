@@ -2,6 +2,7 @@
 
 #pragma region Engine
 Engine::Engine() {}
+
 Engine::~Engine() {}
 
 void Engine::init(const char* title, int x, int y, int width, int height, bool fullscreen)
@@ -18,6 +19,7 @@ void Engine::init(const char* title, int x, int y, int width, int height, bool f
 		printf("Engine init");
 		window = SDL_CreateWindow(title, x, y, width, height, flags);
 		renderer = SDL_CreateRenderer(window, -1, 0);
+		input = new Input();
 		isRunning = true;
 	}
 	else
@@ -29,19 +31,39 @@ void Engine::init(const char* title, int x, int y, int width, int height, bool f
 void Engine::handleEvents()
 {
 	SDL_Event event;
-	SDL_PollEvent(&event);
 
-	switch (event.type)
+	while (SDL_PollEvent(&event))
 	{
-	case SDL_QUIT:
-		isRunning = false;
-		break;
+		switch (event.type)
+		{
+			case SDL_QUIT:
+			{
+				isRunning = false;
+				break;
+			}
+			case SDL_KEYDOWN:
+			{
+				int scancode = event.key.keysym.scancode;
+				input->keys[scancode] = true;
+				break;
+			}
+			case SDL_KEYUP:
+			{
+				int scancode = event.key.keysym.scancode;
+				input->keys[scancode] = false;
+				break;
+			}
+		}
 	}
 }
 
+
 void Engine::update()
 {
-
+	if (input->GetKeyDown(SDL_SCANCODE_W))
+	{
+		printf("W down\n");
+	}
 }
 
 void Engine::render()
@@ -62,7 +84,38 @@ void Engine::clean()
 }
 #pragma endregion
 
+#pragma region Input
+Input::Input() {}
+Input::~Input() {}
+
+bool Input::GetKeyDown(int scancode)
+{
+	return keys[scancode] == true;
+}
+
+void Input::SetKeyState(int scancode, bool state)
+{
+	keys[scancode] = state;
+}
+#pragma endregion
+
 #pragma region Time
 Time::Time() {}
 Time::~Time() {}
+#pragma endregion
+
+#pragma region Vector2
+Vector2* Vector2::operator+(Vector2* rhs)
+{
+	rhs->x += this->x;
+	rhs->y += this->y;
+	return rhs;
+}
+
+Vector2* Vector2::operator-(Vector2* rhs)
+{
+	rhs->x -= this->x;
+	rhs->y -= this->y;
+	return rhs;
+}
 #pragma endregion

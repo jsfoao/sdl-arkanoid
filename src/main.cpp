@@ -28,7 +28,7 @@ int main()
 		{
 			SDL_Delay(frameDelay - n_time->deltaTime);
 		}
-		printf("FPS %f\n", 1.f / n_time->deltaTime);
+		/*printf("FPS %f\n", 1.f / n_time->deltaTime);*/
 	}
 
 	n_engine->clean();

@@ -3,6 +3,46 @@
 #include <stdio.h>
 #include <SDL/SDL.h>
 
+#pragma region Input
+class Input
+{
+public:
+	bool keys[SDL_NUM_SCANCODES];
+public:
+	Input();
+	~Input();
+
+	bool GetKeyDown(int scancode);
+	void SetKeyState(int scancode, bool state);
+};
+#pragma endregion
+
+#pragma region Time
+class Time
+{
+public:
+	Time();
+	~Time();
+
+public:
+	float deltaTime;
+};
+#pragma endregion
+
+#pragma region Vector2
+struct Vector2
+{
+	int x, y;
+
+	Vector2();
+	~Vector2();
+	Vector2(int x, int y);
+
+	Vector2* operator+(Vector2* rhs);
+	Vector2* operator-(Vector2* rhs);
+};
+#pragma endregion 
+
 #pragma region Engine
 class Engine
 {
@@ -23,41 +63,6 @@ private:
 	bool isRunning;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
+	Input* input;
 };
 #pragma endregion
-
-#pragma region Time
-class Time
-{
-public:
-	Time();
-	~Time();
-
-public:
-	float deltaTime;
-};
-#pragma endregion
-
-struct Vector2
-{
-	int x;
-	int y;
-
-	Vector2 operator=(int& other);
-	friend Vector2 operator+(Vector2 a, Vector2 b);
-	friend Vector2 operator-(Vector2 a, Vector2 b);
-	friend Vector2 operator*(Vector2 a, int b);
-};
-
-
-
-
-
-
-
-const float PI = 3.1415;
-
-class Draw
-{
-
-};
