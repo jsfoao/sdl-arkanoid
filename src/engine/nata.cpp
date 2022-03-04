@@ -16,7 +16,7 @@ void Engine::init(const char* title, int x, int y, int width, int height, bool f
 	// successfully initialized SDL subsystems
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
 	{
-		printf("Engine init");
+		printf("Engine init\n");
 		window = SDL_CreateWindow(title, x, y, width, height, flags);
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		input = new Input();
@@ -58,14 +58,14 @@ void Engine::handleEvents()
 	}
 }
 
-void Engine::start(){}
+
+void Engine::start() 
+{
+	GameObject gameobject;
+}
 
 void Engine::update()
 {
-	if (input->GetKeyDown(SDL_SCANCODE_W))
-	{
-		printf("W down\n");
-	}
 }
 
 void Engine::render()
@@ -98,11 +98,6 @@ bool Input::GetKeyDown(int scancode)
 bool Input::GetKeyUp(int scancode)
 {
 	return keys[scancode] == false;
-}
-
-void Input::SetKeyState(int scancode, bool state)
-{
-	keys[scancode] = state;
 }
 #pragma endregion
 

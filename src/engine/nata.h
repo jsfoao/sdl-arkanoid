@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <SDL/SDL.h>
 #include "Vector2.h"
+#include "GameObject.h"
 
 #pragma region Input
 class Input
@@ -15,7 +16,6 @@ public:
 
 	bool GetKeyDown(int scancode);
 	bool GetKeyUp(int scancode);
-	void SetKeyState(int scancode, bool state);
 };
 #pragma endregion
 
