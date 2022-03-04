@@ -21,6 +21,7 @@ void Engine::init(const char* title, int x, int y, int width, int height, bool f
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		input = new Input();
 		isRunning = true;
+		start();
 	}
 	else
 	{
@@ -57,6 +58,7 @@ void Engine::handleEvents()
 	}
 }
 
+void Engine::start(){}
 
 void Engine::update()
 {
@@ -93,6 +95,11 @@ bool Input::GetKeyDown(int scancode)
 	return keys[scancode] == true;
 }
 
+bool Input::GetKeyUp(int scancode)
+{
+	return keys[scancode] == false;
+}
+
 void Input::SetKeyState(int scancode, bool state)
 {
 	keys[scancode] = state;
@@ -102,20 +109,4 @@ void Input::SetKeyState(int scancode, bool state)
 #pragma region Time
 Time::Time() {}
 Time::~Time() {}
-#pragma endregion
-
-#pragma region Vector2
-Vector2* Vector2::operator+(Vector2* rhs)
-{
-	rhs->x += this->x;
-	rhs->y += this->y;
-	return rhs;
-}
-
-Vector2* Vector2::operator-(Vector2* rhs)
-{
-	rhs->x -= this->x;
-	rhs->y -= this->y;
-	return rhs;
-}
 #pragma endregion

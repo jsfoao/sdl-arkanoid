@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <SDL/SDL.h>
+#include "Vector2.h"
 
 #pragma region Input
 class Input
@@ -13,6 +14,7 @@ public:
 	~Input();
 
 	bool GetKeyDown(int scancode);
+	bool GetKeyUp(int scancode);
 	void SetKeyState(int scancode, bool state);
 };
 #pragma endregion
@@ -29,20 +31,6 @@ public:
 };
 #pragma endregion
 
-#pragma region Vector2
-struct Vector2
-{
-	int x, y;
-
-	Vector2();
-	~Vector2();
-	Vector2(int x, int y);
-
-	Vector2* operator+(Vector2* rhs);
-	Vector2* operator-(Vector2* rhs);
-};
-#pragma endregion 
-
 #pragma region Engine
 class Engine
 {
@@ -53,6 +41,7 @@ public:
 	void init(const char* title, int x, int y, int width, int height, bool fullscreen);
 
 	void handleEvents();
+	void start();
 	void update();
 	void render();
 	void clean();
