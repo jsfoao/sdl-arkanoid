@@ -16,6 +16,14 @@ void Entity::destroy()
 	active = false;
 }
 
+void Entity::start()
+{
+	for (Component* c : components)
+	{
+		c->start();
+	}
+}
+
 void Entity::update()
 {
 	if (!active){ return;}
@@ -102,9 +110,16 @@ void Renderer::render()
 #pragma endregion
 
 #pragma region PlayerController
+
+static BoxCollider* playerCollider = nullptr;
 PlayerController::PlayerController()
 {
 	speed = 200;
+}
+
+void PlayerController::start()
+{
+	playerCollider = owner->getComponent<BoxCollider>();
 }
 
 void PlayerController::update()
@@ -125,18 +140,80 @@ void PlayerController::update()
 	{
 		owner->transform->position.x += speed * n_engine->time->deltaTime;
 	}
+
+	if (playerCollider->onCollision())
+	{
+		owner->getComponent<Renderer>()->color = Color::Red;
+	}
+	else
+	{
+		owner->getComponent<Renderer>()->color = Color::Green;
+	}
 }
+#pragma endregion
+
+#pragma region Collider
+Collider::Collider()
+{
+	tag = Default;
+	isTrigger = false;
+	n_engine->colliders.push_back(this);
+}
+
+Collider::~Collider()
+{
+	for (size_t i = 0; i < n_engine->colliders.size(); i++)
+	{
+		if (n_engine->colliders[i] == this)
+		{
+			n_engine->colliders.erase(std::next(n_engine->colliders.begin(), i));
+		}
+	}
+}
+
+void Collider::update()
+{
+
+}
+
+bool Collider::onCollision()
+{
+	return isColliding;
+}
+
 #pragma endregion
 
 #pragma region BoxCollider
 BoxCollider::BoxCollider()
 {
 	color = Color::White;
-	scale = Vector2(32, 32);
+	scale = Vector2(64, 64);
 }
 void BoxCollider::update()
 {
+	Collider::update();
 	position = owner->transform->position + offset;
+
+	for (Collider* collider : n_engine->colliders)
+	{
+		if (collider == this){ continue;}
+
+		if (aabb_intersect(this, (BoxCollider*)collider))
+		{
+			if (tag == collider->tag)
+			{
+				isColliding = true;
+			}
+			else
+			{
+				isColliding = false;
+			}
+		}
+		else
+		{
+			isColliding = false;
+		}
+	}
 }
 void BoxCollider::render()
 {
@@ -170,6 +247,7 @@ CircleCollider::CircleCollider()
 }
 void CircleCollider::update()
 {
+	Collider::update();
 	position = owner->transform->position + offset;
 }
 
@@ -304,17 +382,23 @@ void Engine::start()
 {
 	// Player entity
 	player = new Entity();
-	player->addComponent<PlayerController>();
+	player->transform->position = Vector2(100, 100);
 	player->addComponent<BoxCollider>();
+	player->addComponent<PlayerController>();
 	player->getComponent<Renderer>()->color = Color::Blue;
 
 	box = new Entity();
-	box->addComponent<CircleCollider>();
+	box->addComponent<BoxCollider>();
 	box->getComponent<Transform>()->position = Vector2(300, 300);
 	box->getComponent<Renderer>()->color = Color::Red;
 
 	addEntity(player);
 	addEntity(box);
+
+	for (Entity* entity : entities)
+	{
+		entity->start();
+	}
 }
 
 void Engine::update()
@@ -322,15 +406,6 @@ void Engine::update()
 	for (Entity* entity : entities)
 	{
 		entity->update();
-	}
-
-	if (aabb_circle_intersect(player->getComponent<BoxCollider>(), box->getComponent<CircleCollider>()))
-	{
-		box->getComponent<Renderer>()->color = Color::Green;
-	}
-	else
-	{
-		box->getComponent<Renderer>()->color = Color::Red;
 	}
 }
 

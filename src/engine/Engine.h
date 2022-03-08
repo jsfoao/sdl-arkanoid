@@ -8,6 +8,12 @@
 #include "Color.h"
 #include "Window.h"
 
+enum Tag
+{
+	Default,
+	Player,
+	Ground
+};
 
 #pragma region ECS
 class Entity;
@@ -27,6 +33,7 @@ public:
 public:
 	Entity();
 	~Entity();
+	void start();
 	void update();
 	void render();
 	void destroy();
@@ -83,7 +90,18 @@ public:
 	Vector2 position;
 	Vector2 offset;
 	Color color;
-	std::string tag;
+	Tag tag;
+	bool isTrigger;
+	Collider* other;
+
+protected: 
+	bool isColliding;
+
+public:
+	Collider();
+	~Collider();
+	void update() override;
+	bool onCollision();
 };
 
 class BoxCollider : public Collider
@@ -120,6 +138,7 @@ public:
 	int speed;
 public:
 	PlayerController();
+	void start() override;
 	void update() override;
 };
 #pragma endregion
@@ -160,6 +179,7 @@ public:
 	Input* input;
 	Time* time;
 	std::vector<Entity*> entities;
+	std::vector<Collider*> colliders;
 
 public:
 	Engine();
@@ -177,6 +197,17 @@ public:
 	{
 		entity->sdl_renderer = renderer;
 		entities.push_back(entity);
+	}
+
+	void removeEntity(Entity* entity)
+	{
+		for (size_t i = 0; i < entities.size(); i++)
+		{
+			if (entities[i] == entity)
+			{
+				entities.erase(std::next(entities.begin(), i));
+			}
+		}
 	}
 
 	bool running() { return isRunning; }
