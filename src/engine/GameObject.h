@@ -17,4 +17,7 @@ public:
 	~GameObject();
 	
 	GameObject(const Vector2& position, const Vector2& scale, const Color& color);
+
+	void update();
+	void render(SDL_Renderer* renderer);
 };

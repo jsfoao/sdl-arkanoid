@@ -1,6 +1,7 @@
-#include <SDL/SDL.h>
 #include "GameObject.h"
+#include <iostream>
 
+GameObject::~GameObject() {}
 GameObject::GameObject() 
 {
 	position = Vector2(100, 100);
@@ -14,11 +15,15 @@ GameObject::GameObject(const Vector2& position, const Vector2& scale, const Colo
 	this->color = color;
 }
 
-GameObject::start() {}
-GameObject::update() {}
-//GameObject::draw(SDL_Renderer* renderer)
-//{
-//	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
-//	SDL_Rect rect = { position.x, position.y, scale.x, scale.y };
-//	SDL_RenderFillRect(renderer, &rect);
-//}
+void GameObject::update()
+{
+
+}
+
+
+void GameObject::render(SDL_Renderer* renderer)
+{
+	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+	SDL_Rect rect = { position.x, position.y, scale.x, scale.y };
+	SDL_RenderFillRect(renderer, &rect);
+}

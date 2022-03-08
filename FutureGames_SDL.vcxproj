@@ -16,6 +16,7 @@
     <ProjectGuid>{157fd51b-bc5c-497a-ba9a-c3c11e2301c8}</ProjectGuid>
     <RootNamespace>FutureGamesSDL</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Nata_Engine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -90,13 +91,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\engine\nata.cpp" />
+    <ClCompile Include="src\engine\Color.cpp" />
+    <ClCompile Include="src\engine\Engine.cpp" />
+    <ClCompile Include="src\engine\GameObject.cpp" />
+    <ClCompile Include="src\engine\TextureManager.cpp" />
     <ClCompile Include="src\engine\Vector2.cpp" />
+    <ClCompile Include="src\engine\Window.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\engine\nata.h" />
+    <ClInclude Include="src\engine\Color.h" />
+    <ClInclude Include="src\engine\Engine.h" />
+    <ClInclude Include="src\engine\GameObject.h" />
+    <ClInclude Include="src\engine\TextureManager.h" />
     <ClInclude Include="src\engine\Vector2.h" />
+    <ClInclude Include="src\engine\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

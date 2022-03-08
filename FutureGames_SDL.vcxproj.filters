@@ -1,12 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\engine\nata.cpp" />
+    <ClCompile Include="src\engine\Engine.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\engine\Vector2.cpp" />
+    <ClCompile Include="src\engine\Color.cpp" />
+    <ClCompile Include="src\engine\GameObject.cpp" />
+    <ClCompile Include="src\engine\Window.cpp" />
+    <ClCompile Include="src\engine\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\engine\nata.h" />
+    <ClInclude Include="src\engine\Engine.h" />
     <ClInclude Include="src\engine\Vector2.h" />
+    <ClInclude Include="src\engine\Color.h" />
+    <ClInclude Include="src\engine\GameObject.h" />
+    <ClInclude Include="src\engine\Window.h" />
+    <ClInclude Include="src\engine\TextureManager.h" />
   </ItemGroup>
 </Project>
