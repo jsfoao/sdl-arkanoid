@@ -109,7 +109,8 @@ public:
 	void render() override;
 };
 
-bool aabb_circle_intersect(const CircleCollider* a, const CircleCollider* b);
+bool circle_intersect(const CircleCollider* a, const CircleCollider* b);
+bool aabb_circle_intersect(const BoxCollider* box, const CircleCollider* circle);
 int clamp(int a, int min, int max);
 
 

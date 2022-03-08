@@ -200,7 +200,7 @@ void CircleCollider::render()
 	}
 }
 
-bool aabb_circle_intersect(const CircleCollider* a, const CircleCollider* b)
+bool circle_intersect(const CircleCollider* a, const CircleCollider* b)
 {
 	int dx = b->position.x - a->position.x;
 	int dy = b->position.y - a->position.y;
@@ -220,6 +220,25 @@ int clamp(int a, int min, int max)
 		return max;
 
 	return a;
+}
+
+bool aabb_circle_intersect(const BoxCollider* box, const CircleCollider* circle)
+{
+	float xMin = box->position.x - (box->scale.x / 2);
+	float xMax = box->position.x + (box->scale.x / 2);
+	float yMin = box->position.y - (box->scale.y / 2);
+	float yMax = box->position.y + (box->scale.y / 2);
+
+	float clamped_x = clamp(circle->position.x, xMin, xMax);
+	float clamped_y = clamp(circle->position.y, yMin, yMax);
+
+	float dx = circle->position.x - clamped_x;
+	float dy = circle->position.y - clamped_y;
+
+	float dist_sqrd = dx * dx + dy * dy;
+	float dist = sqrt(dist_sqrd);
+
+	return dist < circle->radius;
 }
 #pragma endregion
 
@@ -286,7 +305,8 @@ void Engine::start()
 	// Player entity
 	player = new Entity();
 	player->addComponent<PlayerController>();
-	player->addComponent<CircleCollider>();
+	player->addComponent<BoxCollider>();
+	player->getComponent<Renderer>()->color = Color::Blue;
 
 	box = new Entity();
 	box->addComponent<CircleCollider>();
@@ -304,7 +324,7 @@ void Engine::update()
 		entity->update();
 	}
 
-	if (aabb_circle_intersect(player->getComponent<CircleCollider>(), box->getComponent<CircleCollider>()))
+	if (aabb_circle_intersect(player->getComponent<BoxCollider>(), box->getComponent<CircleCollider>()))
 	{
 		box->getComponent<Renderer>()->color = Color::Green;
 	}
