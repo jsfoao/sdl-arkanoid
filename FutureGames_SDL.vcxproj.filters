@@ -5,7 +5,6 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\engine\Vector2.cpp" />
     <ClCompile Include="src\engine\Color.cpp" />
-    <ClCompile Include="src\engine\GameObject.cpp" />
     <ClCompile Include="src\engine\Window.cpp" />
     <ClCompile Include="src\engine\TextureManager.cpp" />
   </ItemGroup>
@@ -13,7 +12,6 @@
     <ClInclude Include="src\engine\Engine.h" />
     <ClInclude Include="src\engine\Vector2.h" />
     <ClInclude Include="src\engine\Color.h" />
-    <ClInclude Include="src\engine\GameObject.h" />
     <ClInclude Include="src\engine\Window.h" />
     <ClInclude Include="src\engine\TextureManager.h" />
   </ItemGroup>

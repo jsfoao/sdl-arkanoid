@@ -1,11 +1,13 @@
 #pragma once
 #include <iostream>
+#include <string>
 #include <vector>
 #include <stdio.h>
 #include <SDL/SDL.h>
 #include "Vector2.h"
 #include "Color.h"
 #include "Window.h"
+
 
 #pragma region ECS
 class Entity;
@@ -73,6 +75,51 @@ public:
 	Renderer();
 	~Renderer();
 	void render() override;
+};
+
+class Collider : public Component
+{
+public:
+	Vector2 position;
+	Vector2 offset;
+	Color color;
+	std::string tag;
+};
+
+class BoxCollider : public Collider
+{
+public:
+	Vector2 scale;
+
+public:
+	BoxCollider();
+	void update() override;
+	void render() override;
+};
+bool aabb_intersect(const BoxCollider* a, const BoxCollider* b);
+
+class CircleCollider : public Collider
+{
+public:
+	int radius;
+
+public:
+	CircleCollider();
+	void update() override;
+	void render() override;
+};
+
+bool aabb_circle_intersect(const CircleCollider* a, const CircleCollider* b);
+int clamp(int a, int min, int max);
+
+
+class PlayerController : public Component
+{
+public:
+	int speed;
+public:
+	PlayerController();
+	void update() override;
 };
 #pragma endregion
 

@@ -1,6 +1,6 @@
 #include "engine/engine.h"
 
-Engine* n_engine = nullptr;
+extern Engine* n_engine;
 int main()
 {
 	n_engine = new Engine();
