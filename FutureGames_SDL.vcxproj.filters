@@ -9,6 +9,10 @@
     <ClCompile Include="src\engine\TextureManager.cpp" />
     <ClCompile Include="src\engine\Input\Input.cpp" />
     <ClCompile Include="src\engine\ECS\ECS.cpp" />
+    <ClCompile Include="src\engine\Components\Core\Transform.cpp" />
+    <ClCompile Include="src\engine\Components\Core\Renderer.cpp" />
+    <ClCompile Include="src\engine\Components\Core\Collider.cpp" />
+    <ClCompile Include="src\engine\Components\Game\PlayerController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\Engine.h" />
@@ -18,5 +22,9 @@
     <ClInclude Include="src\engine\TextureManager.h" />
     <ClInclude Include="src\engine\Input\Input.h" />
     <ClInclude Include="src\engine\ECS\ECS.h" />
+    <ClInclude Include="src\engine\Components\Core\Transform.h" />
+    <ClInclude Include="src\engine\Components\Core\Renderer.h" />
+    <ClInclude Include="src\engine\Components\Core\Collider.h" />
+    <ClInclude Include="src\engine\Components\Game\PlayerController.h" />
   </ItemGroup>
 </Project>

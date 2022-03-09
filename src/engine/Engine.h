@@ -9,6 +9,10 @@
 #include "Window/Window.h"
 #include "Input/Input.h"
 #include "ECS/ECS.h"
+#include "Components/Core/Transform.h"
+#include "Components/Core/Renderer.h"
+#include "Components/Core/Collider.h"
+#include "Components/Game/PlayerController.h"
 
 enum Tag
 {
@@ -29,7 +33,6 @@ public:
 };
 #pragma endregion
 
-#pragma region Engine
 class Engine
 {
 public:
@@ -72,4 +75,3 @@ public:
 
 	bool running() { return isRunning; }
 };
-#pragma endregion
