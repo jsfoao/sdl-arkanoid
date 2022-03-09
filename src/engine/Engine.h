@@ -7,6 +7,7 @@
 #include "Vector/Vector2.h"
 #include "Color/Color.h"
 #include "Window/Window.h"
+#include "Input/Input.h"
 
 enum Tag
 {
@@ -140,20 +141,6 @@ public:
 	PlayerController();
 	void start() override;
 	void update() override;
-};
-#pragma endregion
-
-#pragma region Input
-class Input
-{
-public:
-	bool keys[SDL_NUM_SCANCODES];
-public:
-	Input();
-	~Input();
-
-	bool GetKeyDown(int scancode);
-	bool GetKeyUp(int scancode);
 };
 #pragma endregion
 

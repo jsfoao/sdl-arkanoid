@@ -7,6 +7,7 @@
     <ClCompile Include="src\engine\Color\Color.cpp" />
     <ClCompile Include="src\engine\Window\Window.cpp" />
     <ClCompile Include="src\engine\TextureManager.cpp" />
+    <ClCompile Include="src\engine\Input\Input.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\Engine.h" />
@@ -14,5 +15,6 @@
     <ClInclude Include="src\engine\Color\Color.h" />
     <ClInclude Include="src\engine\Window\Window.h" />
     <ClInclude Include="src\engine\TextureManager.h" />
+    <ClInclude Include="src\engine\Input\Input.h" />
   </ItemGroup>
 </Project>

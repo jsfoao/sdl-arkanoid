@@ -431,21 +431,6 @@ void Engine::clean()
 }
 #pragma endregion
 
-#pragma region Input
-Input::Input() {}
-Input::~Input() {}
-
-bool Input::GetKeyDown(int scancode)
-{
-	return keys[scancode] == true;
-}
-
-bool Input::GetKeyUp(int scancode)
-{
-	return keys[scancode] == false;
-}
-#pragma endregion
-
 #pragma region Time
 Time::Time() {}
 Time::~Time() {}
