@@ -4,9 +4,9 @@
 #include <vector>
 #include <stdio.h>
 #include <SDL/SDL.h>
-#include "Vector2.h"
-#include "Color.h"
-#include "Window.h"
+#include "Vector/Vector2.h"
+#include "Color/Color.h"
+#include "Window/Window.h"
 
 enum Tag
 {

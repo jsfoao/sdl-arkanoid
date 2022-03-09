@@ -1,5 +1,5 @@
 #include <SDL/SDL.h>
-#include "Vector2.h"
+#include "../Vector/Vector2.h"
 
 class Window
 {
