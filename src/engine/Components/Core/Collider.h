@@ -20,7 +20,7 @@ public:
 	Collider* other;
 	std::bitset<8> layer;
 	std::bitset<8> collisionLayer;
-	bool stay;
+	Collider* lastCollider;
 
 	// Gizmos
 	Color color;

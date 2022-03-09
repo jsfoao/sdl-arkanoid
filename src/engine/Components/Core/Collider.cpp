@@ -57,7 +57,6 @@ BoxCollider::BoxCollider()
 {
 	color = Color::White;
 	scale = Vector2(64, 64);
-	stay = false;
 }
 
 bool BoxCollider::isColliding(Collider* collider)
@@ -80,23 +79,22 @@ void BoxCollider::update()
 
 		if (isColliding(collider))
 		{
-			if (stay == false)
+			if (lastCollider != collider)
 			{
+				lastCollider = collider;
 				notifyComponentsEnter(collider);
-				stay = true;
-				break;
 			}
-			if (stay == true)
+			else
 			{
 				notifyComponentsStay(collider);
 			}
 		}
 		else
 		{
-			if (stay == true)
+			if (lastCollider == collider)
 			{
 				notifyComponentsExit(collider);
-				stay = false;
+				lastCollider = nullptr;
 			}
 		}
 	}

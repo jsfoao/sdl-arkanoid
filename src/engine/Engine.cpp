@@ -78,12 +78,12 @@ void Engine::start()
 	addEntity(box);
 
 	// Box2 entity
-	//box2 = new Entity();
-	//box2->transform->position = Vector2(200, 400);
-	//box2->getComponent<BoxCollider>()->layer = Default;
-	//box2->getComponent<BoxCollider>()->collisionLayer = Default;
-	//box2->getComponent<Renderer>()->color = Color::Red;
-	//addEntity(box2);
+	box2 = new Entity();
+	box2->transform->position = Vector2(200, 400);
+	box2->getComponent<BoxCollider>()->layer = Default;
+	box2->getComponent<BoxCollider>()->collisionLayer = Default;
+	box2->getComponent<Renderer>()->color = Color::Red;
+	addEntity(box2);
 
 	for (Entity* entity : entities)
 	{
