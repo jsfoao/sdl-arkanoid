@@ -1,11 +1,12 @@
 #include "PlayerController.h"
 #include "../../Engine.h"
+#include <iostream>
 
 extern Engine* n_engine;
 
 void PlayerController::start()
 {
-	speed = 200;
+	speed = 180;
 }
 
 void PlayerController::update()
@@ -27,3 +28,46 @@ void PlayerController::update()
 		owner->transform->position.x += speed * n_engine->time->deltaTime;
 	}
 }
+
+void PlayerController::onCollisionEnter(Collider* collider)
+{
+	if (collider->layer == Default)
+	{
+		std::cout << "Enter!" << std::endl;
+		owner->getComponent<Renderer>()->color = Color::Black;
+		collider->owner->getComponent<Renderer>()->color = Color::Green;
+	}
+}
+
+void PlayerController::onCollisionExit(Collider* collider)
+{
+	if (collider->layer == Default)
+	{
+		std::cout << "Exit!" << std::endl;
+		owner->getComponent<Renderer>()->color = Color::White;
+		collider->owner->getComponent<Renderer>()->color = Color::Red;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+// friction notes
+// move
+//if (move_right())
+//{
+//	velX += speed * deltaTime;
+//}
+//
+//// apply friction
+//velX -= velX * friction_coefficient * deltaTime;
+//
+//// apply velocity to position
+//posX += velX * deltaTime;

@@ -27,11 +27,29 @@ void Collider::update()
 
 }
 
-bool Collider::onCollision()
+void Collider::notifyComponentsEnter(Collider* collider)
 {
-	return isColliding;
+	for (Component* component : owner->components)
+	{
+		component->onCollisionEnter(collider);
+	}
 }
 
+void Collider::notifyComponentsStay(Collider* collider)
+{
+	for (Component* component : owner->components)
+	{
+		component->onCollisionStay(collider);
+	}
+}
+
+void Collider::notifyComponentsExit(Collider* collider)
+{
+	for (Component* component : owner->components)
+	{
+		component->onCollisionExit(collider);
+	}
+}
 #pragma endregion
 
 #pragma region BoxCollider
@@ -39,6 +57,17 @@ BoxCollider::BoxCollider()
 {
 	color = Color::White;
 	scale = Vector2(64, 64);
+	stay = false;
+}
+
+bool BoxCollider::isColliding(Collider* collider)
+{
+	if (aabb_intersect(this, (BoxCollider*)collider)
+		&& (collisionLayer & collider->layer) != 0)
+	{
+		return true;
+	}
+	return false;
 }
 void BoxCollider::update()
 {
@@ -49,21 +78,26 @@ void BoxCollider::update()
 	{
 		if (collider == this) { continue; }
 
-		if (aabb_intersect(this, (BoxCollider*)collider))
+		if (isColliding(collider))
 		{
-			if ((collisionLayer & collider->layer) != 0)
+			if (stay == false)
 			{
-				std::cout << "Collision" << std::endl;
-				isColliding = true;
+				notifyComponentsEnter(collider);
+				stay = true;
+				break;
 			}
-			else
+			if (stay == true)
 			{
-				isColliding = false;
+				notifyComponentsStay(collider);
 			}
 		}
 		else
 		{
-			isColliding = false;
+			if (stay == true)
+			{
+				notifyComponentsExit(collider);
+				stay = false;
+			}
 		}
 	}
 }

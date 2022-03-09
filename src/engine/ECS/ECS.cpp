@@ -50,3 +50,6 @@ Component::~Component() {}
 void Component::start() {}
 void Component::update() {}
 void Component::render() {}
+void Component::onCollisionEnter(Collider* collider) {}
+void Component::onCollisionStay(Collider* collider) {}
+void Component::onCollisionExit(Collider* collider) {}

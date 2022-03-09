@@ -8,6 +8,7 @@ class Entity;
 class Component;
 class Transform;
 class Renderer;
+class Collider;
 
 class Entity
 {
@@ -46,7 +47,6 @@ public:
 			}
 		}
 	}
-
 };
 
 class Component
@@ -55,8 +55,12 @@ public:
 	bool active = true;
 	Entity* owner;
 
+public:
 	virtual ~Component();
 	virtual void start();
 	virtual void update();
 	virtual void render();
+	virtual void onCollisionEnter(Collider* collider);
+	virtual void onCollisionStay(Collider* collider);
+	virtual void onCollisionExit(Collider* collider);
 };

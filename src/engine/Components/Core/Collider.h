@@ -20,18 +20,19 @@ public:
 	Collider* other;
 	std::bitset<8> layer;
 	std::bitset<8> collisionLayer;
+	bool stay;
 
 	// Gizmos
 	Color color;
-
-protected:
-	bool isColliding;
 
 public:
 	Collider();
 	~Collider();
 	void update() override;
-	bool onCollision();
+	void notifyComponentsEnter(Collider* collider);
+	void notifyComponentsStay(Collider* collider);
+	void notifyComponentsExit(Collider* collider);
+	bool isColliding(Collider* collider);
 };
 
 class BoxCollider : public Collider
@@ -43,6 +44,7 @@ public:
 	BoxCollider();
 	void update() override;
 	void render() override;
+	bool isColliding(Collider* collider);
 };
 bool aabb_intersect(const BoxCollider* a, const BoxCollider* b);
 
