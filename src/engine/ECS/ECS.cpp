@@ -6,6 +6,9 @@ Entity::Entity()
 {
 	transform = addComponent<Transform>();
 	renderer = addComponent<Renderer>();
+	
+	BoxCollider* collider = addComponent<BoxCollider>();
+	collider->scale = transform->scale;
 }
 
 Entity::~Entity() {}
@@ -41,12 +44,6 @@ void Entity::render()
 	{
 		c->render();
 	}
-}
-
-void Entity::log()
-{
-	std::cout << "Position: ";
-	transform->position.print();
 }
 
 Component::~Component() {}

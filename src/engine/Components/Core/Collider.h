@@ -1,16 +1,28 @@
 #pragma once
+#include <iostream>
 #include "../../ECS/ECS.h"
 #include "../../Vector/Vector2.h"
 #include "../../Color/Color.h"
+#include <bitset>
+
+enum CollisionLayer
+{
+	Default = 0b00000001,
+	Player = 0b00000010,
+	Ground = 0b00000100
+};
 
 class Collider : public Component
 {
 public:
 	Vector2 position;
 	Vector2 offset;
-	Color color;
-	bool isTrigger;
 	Collider* other;
+	std::bitset<8> layer;
+	std::bitset<8> collisionLayer;
+
+	// Gizmos
+	Color color;
 
 protected:
 	bool isColliding;

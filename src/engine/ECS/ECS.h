@@ -26,8 +26,6 @@ public:
 	void render();
 	void destroy();
 
-	void AddCollider();
-
 	template <typename T>
 	T* addComponent()
 	{
@@ -49,7 +47,6 @@ public:
 		}
 	}
 
-	void log();
 };
 
 class Component

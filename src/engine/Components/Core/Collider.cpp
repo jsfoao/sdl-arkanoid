@@ -6,7 +6,8 @@ extern Engine* n_engine;
 #pragma region Collider
 Collider::Collider()
 {
-	isTrigger = false;
+	layer = Default;
+	collisionLayer = Default;
 	n_engine->colliders.push_back(this);
 }
 
@@ -50,7 +51,15 @@ void BoxCollider::update()
 
 		if (aabb_intersect(this, (BoxCollider*)collider))
 		{
-			isColliding = true;
+			if ((collisionLayer & collider->layer) != 0)
+			{
+				std::cout << "Collision" << std::endl;
+				isColliding = true;
+			}
+			else
+			{
+				isColliding = false;
+			}
 		}
 		else
 		{

@@ -3,13 +3,9 @@
 
 extern Engine* n_engine;
 
-PlayerController::PlayerController()
-{
-	speed = 200;
-}
-
 void PlayerController::start()
 {
+	speed = 200;
 }
 
 void PlayerController::update()

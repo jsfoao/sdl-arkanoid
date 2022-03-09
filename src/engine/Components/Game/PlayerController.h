@@ -6,7 +6,6 @@ class PlayerController : public Component
 public:
 	int speed;
 public:
-	PlayerController();
 	void start() override;
 	void update() override;
 };

@@ -14,13 +14,6 @@
 #include "Components/Core/Collider.h"
 #include "Components/Game/PlayerController.h"
 
-enum Tag
-{
-	Default,
-	Player,
-	Ground
-};
-
 #pragma region Time
 class Time
 {
