@@ -92,6 +92,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\engine\Color\Color.cpp" />
+    <ClCompile Include="src\engine\ECS\ECS.cpp" />
     <ClCompile Include="src\engine\Engine.cpp" />
     <ClCompile Include="src\engine\Input\Input.cpp" />
     <ClCompile Include="src\engine\TextureManager.cpp" />
@@ -101,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\Color\Color.h" />
+    <ClInclude Include="src\engine\ECS\ECS.h" />
     <ClInclude Include="src\engine\Engine.h" />
     <ClInclude Include="src\engine\Input\Input.h" />
     <ClInclude Include="src\engine\TextureManager.h" />
