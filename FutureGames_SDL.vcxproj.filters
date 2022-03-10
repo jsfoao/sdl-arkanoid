@@ -12,7 +12,7 @@
     <ClCompile Include="src\engine\Components\Core\Transform.cpp" />
     <ClCompile Include="src\engine\Components\Core\Renderer.cpp" />
     <ClCompile Include="src\engine\Components\Core\Collider.cpp" />
-    <ClCompile Include="src\engine\Components\Game\PlayerController.cpp" />
+    <ClCompile Include="src\game\Scripts\Components\PlayerController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\Engine.h" />
@@ -25,6 +25,8 @@
     <ClInclude Include="src\engine\Components\Core\Transform.h" />
     <ClInclude Include="src\engine\Components\Core\Renderer.h" />
     <ClInclude Include="src\engine\Components\Core\Collider.h" />
-    <ClInclude Include="src\engine\Components\Game\PlayerController.h" />
+    <ClInclude Include="src\game\Scripts\Components\PlayerController.h" />
+    <ClInclude Include="src\engine\Entities\Core\CoreEntities.h" />
+    <ClInclude Include="src\game\Game.h" />
   </ItemGroup>
 </Project>

@@ -9,7 +9,8 @@ enum CollisionLayer
 {
 	Default = 0b00000001,
 	Player = 0b00000010,
-	Ground = 0b00000100
+	Ground = 0b00000100,
+	All = 0b11111111
 };
 
 class Collider : public Component

@@ -17,7 +17,6 @@ public:
 	std::vector<Component*> components;
 	SDL_Renderer* sdl_renderer;
 	Transform* transform;
-	Renderer* renderer;
 
 public:
 	Entity();

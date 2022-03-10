@@ -2,14 +2,7 @@
 #include <iostream>
 #include "../Engine.h"
 
-Entity::Entity()
-{
-	transform = addComponent<Transform>();
-	renderer = addComponent<Renderer>();
-	
-	BoxCollider* collider = addComponent<BoxCollider>();
-	collider->scale = transform->scale;
-}
+Entity::Entity(){}
 
 Entity::~Entity() {}
 

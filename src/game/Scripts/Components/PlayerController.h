@@ -1,5 +1,5 @@
 #pragma once
-#include "../../ECS/ECS.h"
+#include "../src/engine/ECS/ECS.h"
 
 class PlayerController : public Component
 {

@@ -95,7 +95,7 @@
     <ClCompile Include="src\engine\Components\Core\Collider.cpp" />
     <ClCompile Include="src\engine\Components\Core\Renderer.cpp" />
     <ClCompile Include="src\engine\Components\Core\Transform.cpp" />
-    <ClCompile Include="src\engine\Components\Game\PlayerController.cpp" />
+    <ClCompile Include="src\game\Scripts\Components\PlayerController.cpp" />
     <ClCompile Include="src\engine\ECS\ECS.cpp" />
     <ClCompile Include="src\engine\Engine.cpp" />
     <ClCompile Include="src\engine\Input\Input.cpp" />
@@ -109,9 +109,11 @@
     <ClInclude Include="src\engine\Components\Core\Collider.h" />
     <ClInclude Include="src\engine\Components\Core\Renderer.h" />
     <ClInclude Include="src\engine\Components\Core\Transform.h" />
-    <ClInclude Include="src\engine\Components\Game\PlayerController.h" />
+    <ClInclude Include="src\game\Game.h" />
+    <ClInclude Include="src\game\Scripts\Components\PlayerController.h" />
     <ClInclude Include="src\engine\ECS\ECS.h" />
     <ClInclude Include="src\engine\Engine.h" />
+    <ClInclude Include="src\engine\Entities\Core\CoreEntities.h" />
     <ClInclude Include="src\engine\Input\Input.h" />
     <ClInclude Include="src\engine\TextureManager.h" />
     <ClInclude Include="src\engine\Vector\Vector2.h" />

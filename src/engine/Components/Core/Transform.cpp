@@ -5,7 +5,7 @@ Transform::~Transform() {}
 Transform::Transform()
 {
 	position = Vector2(0, 0);
-	scale = Vector2(32, 32);
+	scale = Vector2(0, 0);
 }
 void Transform::update() {}
 #pragma endregion

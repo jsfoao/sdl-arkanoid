@@ -56,34 +56,15 @@ void Engine::handleEvents()
 
 // Entities
 Entity* player = nullptr;
-Entity* box = nullptr;
-Entity* box2 = nullptr;
+Entity* empty = nullptr;
 
 void Engine::start() 
 {
 	// Player entity
-	player = new Entity();
-	player->transform->position = Vector2(100, 100);
+	player = Instantiate(new Box(), Vector2(100, 100), Vector2(32, 32));
 	player->addComponent<PlayerController>();
-	player->getComponent<BoxCollider>()->layer = Default;
-	player->getComponent<BoxCollider>()->collisionLayer = Default;
-	addEntity(player);
 
-	// Box entity
-	box = new Entity();
-	box->transform->position = Vector2(400, 400);
-	box->getComponent<BoxCollider>()->layer = Default;
-	box->getComponent<BoxCollider>()->collisionLayer = Default;
-	box->getComponent<Renderer>()->color = Color::Red;
-	addEntity(box);
-
-	// Box2 entity
-	box2 = new Entity();
-	box2->transform->position = Vector2(200, 400);
-	box2->getComponent<BoxCollider>()->layer = Default;
-	box2->getComponent<BoxCollider>()->collisionLayer = Default;
-	box2->getComponent<Renderer>()->color = Color::Red;
-	addEntity(box2);
+	empty = Instantiate(new Empty());
 
 	for (Entity* entity : entities)
 	{

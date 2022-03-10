@@ -12,7 +12,9 @@
 #include "Components/Core/Transform.h"
 #include "Components/Core/Renderer.h"
 #include "Components/Core/Collider.h"
-#include "Components/Game/PlayerController.h"
+#include "Entities/Core/CoreEntities.h"
+
+#include "../game/Game.h"
 
 #pragma region Time
 class Time
@@ -64,6 +66,33 @@ public:
 				entities.erase(std::next(entities.begin(), i));
 			}
 		}
+	}
+
+	Entity* Instantiate(Entity* entity)
+	{
+		addEntity(entity);
+		return entity;
+	};
+
+	Entity* Instantiate(Entity* entity, Vector2 position)
+	{
+		entity->transform->position = position;
+		addEntity(entity);
+		return entity;
+	};
+
+	Entity* Instantiate(Entity* entity, Vector2 position, Vector2 scale)
+	{
+		entity->transform->position = position;
+		entity->transform->scale = scale;
+		addEntity(entity);
+		return entity;
+	};
+
+	void Destroy(Entity* entity)
+	{
+		removeEntity(entity);
+		delete entity;
 	}
 
 	bool running() { return isRunning; }
