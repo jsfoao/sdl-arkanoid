@@ -5,10 +5,11 @@
 extern Engine* n_engine;
 extern Input* n_input;
 
-int counter = 0;
 void PlayerController::start()
 {
 	speed = 300.f;
+	Instantiate(new Box(), Vector2(300, 300), Vector2(32, 32));
+	Instantiate(new Box(), Vector2(500, 500), Vector2(32, 32));
 }
 
 void PlayerController::update()
@@ -22,11 +23,9 @@ void PlayerController::update()
 	if (Input::GetKeyUp(SDL_SCANCODE_W))
 	{
 	}
-
-	std::cout << counter << std::endl;
 }
 
-void PlayerController::onCollisionEnter(Collider* collider)
+void PlayerController::OnCollisionEnter(Collider* collider)
 {
 	if (collider->layer == Default)
 	{
@@ -36,7 +35,7 @@ void PlayerController::onCollisionEnter(Collider* collider)
 	}
 }
 
-void PlayerController::onCollisionExit(Collider* collider)
+void PlayerController::OnCollisionExit(Collider* collider)
 {
 	if (collider->layer == Default)
 	{

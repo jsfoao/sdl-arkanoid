@@ -67,32 +67,13 @@ public:
 		}
 	}
 
-	Entity* Instantiate(Entity* entity)
-	{
-		addEntity(entity);
-		return entity;
-	};
-
-	Entity* Instantiate(Entity* entity, Vector2 position)
-	{
-		entity->transform->position = position;
-		addEntity(entity);
-		return entity;
-	};
-
-	Entity* Instantiate(Entity* entity, Vector2 position, Vector2 scale)
-	{
-		entity->transform->position = position;
-		entity->transform->scale = scale;
-		addEntity(entity);
-		return entity;
-	};
-
-	void Destroy(Entity* entity)
-	{
-		removeEntity(entity);
-		delete entity;
-	}
-
 	bool running() { return isRunning; }
 };
+
+#pragma region Global funcs
+Entity* Instantiate(Entity* entity);
+Entity* Instantiate(Entity* entity, Vector2 position);
+Entity* Instantiate(Entity* entity, Vector2 position, Vector2 scale);
+void Destroy(Entity* entity);
+#pragma endregion
+

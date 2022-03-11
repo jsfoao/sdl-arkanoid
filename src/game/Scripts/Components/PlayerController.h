@@ -8,6 +8,6 @@ public:
 public:
 	void start() override;
 	void update() override;
-	void onCollisionEnter(Collider* collider) override;
-	void onCollisionExit(Collider* collider) override;
+	void OnCollisionEnter(Collider* collider) override;
+	void OnCollisionExit(Collider* collider) override;
 };

@@ -13,9 +13,9 @@ void Entity::destroy()
 
 void Entity::start()
 {
-	for (Component* c : components)
+	for (int i = components.size() - 1; i >= 0; i--)
 	{
-		c->start();
+		components[i]->start();
 	}
 }
 
@@ -23,9 +23,9 @@ void Entity::update()
 {
 	if (!active) { return; }
 
-	for (Component* c : components)
+	for (int i = components.size() - 1; i >= 0; i--)
 	{
-		c->update();
+		components[i]->update();
 	}
 }
 
@@ -33,9 +33,9 @@ void Entity::render()
 {
 	if (!active) { return; }
 
-	for (Component* c : components)
+	for (int i = components.size() - 1; i >= 0; i--)
 	{
-		c->render();
+		components[i]->render();
 	}
 }
 
@@ -43,6 +43,6 @@ Component::~Component() {}
 void Component::start() {}
 void Component::update() {}
 void Component::render() {}
-void Component::onCollisionEnter(Collider* collider) {}
-void Component::onCollisionStay(Collider* collider) {}
-void Component::onCollisionExit(Collider* collider) {}
+void Component::OnCollisionEnter(Collider* collider) {}
+void Component::OnCollisionStay(Collider* collider) {}
+void Component::OnCollisionExit(Collider* collider) {}

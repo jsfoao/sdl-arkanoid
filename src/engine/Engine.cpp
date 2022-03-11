@@ -4,6 +4,34 @@ Engine* n_engine = nullptr;
 Input* n_input = nullptr;
 Time* n_time = nullptr;
 int n_scancode = 0;
+#pragma region Global funcs
+Entity* Instantiate(Entity* entity)
+{
+	n_engine->addEntity(entity);
+	return entity;
+};
+
+Entity* Instantiate(Entity* entity, Vector2 position)
+{
+	entity->transform->position = position;
+	n_engine->addEntity(entity);
+	return entity;
+};
+
+Entity* Instantiate(Entity* entity, Vector2 position, Vector2 scale)
+{
+	entity->transform->position = position;
+	entity->transform->scale = scale;
+	n_engine->addEntity(entity);
+	return entity;
+};
+
+void Destroy(Entity* entity)
+{
+	n_engine->removeEntity(entity);
+	delete entity;
+}
+#pragma endregion
 
 #pragma region Engine
 Engine::Engine() {}
@@ -70,17 +98,17 @@ void Engine::start()
 
 	empty = Instantiate(new Empty());
 
-	for (Entity* entity : entities)
+	for (int i = entities.size() - 1; i >= 0; i--)
 	{
-		entity->start();
+		entities[i]->start();
 	}
 }
 
 void Engine::update()
 {
-	for (Entity* entity : entities)
+	for (int i = entities.size() - 1; i >= 0; i--)
 	{
-		entity->update();
+		entities[i]->update();
 	}
 }
 
@@ -89,9 +117,9 @@ void Engine::render()
 	SDL_SetRenderDrawColor(renderer, 25, 25, 40, 255);
 	SDL_RenderClear(renderer);
 
-	for (Entity* entity : entities)
+	for (int i = entities.size() - 1; i >= 0; i--)
 	{
-		entity->render();
+		entities[i]->render();
 	}
 
 	SDL_RenderPresent(renderer);

@@ -31,7 +31,7 @@ void Collider::notifyComponentsEnter(Collider* collider)
 {
 	for (Component* component : owner->components)
 	{
-		component->onCollisionEnter(collider);
+		component->OnCollisionEnter(collider);
 	}
 }
 
@@ -39,7 +39,7 @@ void Collider::notifyComponentsStay(Collider* collider)
 {
 	for (Component* component : owner->components)
 	{
-		component->onCollisionStay(collider);
+		component->OnCollisionStay(collider);
 	}
 }
 
@@ -47,7 +47,7 @@ void Collider::notifyComponentsExit(Collider* collider)
 {
 	for (Component* component : owner->components)
 	{
-		component->onCollisionExit(collider);
+		component->OnCollisionExit(collider);
 	}
 }
 #pragma endregion

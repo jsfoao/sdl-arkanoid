@@ -59,7 +59,7 @@ public:
 	virtual void start();
 	virtual void update();
 	virtual void render();
-	virtual void onCollisionEnter(Collider* collider);
-	virtual void onCollisionStay(Collider* collider);
-	virtual void onCollisionExit(Collider* collider);
+	virtual void OnCollisionEnter(Collider* collider);
+	virtual void OnCollisionStay(Collider* collider);
+	virtual void OnCollisionExit(Collider* collider);
 };
