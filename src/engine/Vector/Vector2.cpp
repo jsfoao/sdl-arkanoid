@@ -9,10 +9,10 @@ Vector2::Vector2()
 
 Vector2::~Vector2(){}
 
-Vector2::Vector2(int newX, int newY)
+Vector2::Vector2(float x, float y)
 {
-	x = newX;
-	y = newY;
+	this->x = x;
+	this->y = y;
 }
 
 Vector2& Vector2::operator=(const Vector2& rhs)

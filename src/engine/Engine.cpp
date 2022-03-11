@@ -1,6 +1,9 @@
 #include "Engine.h"
 
 Engine* n_engine = nullptr;
+Input* n_input = nullptr;
+Time* n_time = nullptr;
+int n_scancode = 0;
 
 #pragma region Engine
 Engine::Engine() {}
@@ -15,8 +18,8 @@ void Engine::init(const char* title, int x, int y, int width, int height, bool f
 		printf("Engine init\n");
 		window = new Window(title, x, y, width, height, fullscreen);
 		renderer = SDL_CreateRenderer(window->sdl_window, -1, 0);
-		input = new Input();
-		time = new Time();
+		n_input = new Input();
+		n_time = new Time();
 		isRunning = true;
 	}
 	else
@@ -40,18 +43,19 @@ void Engine::handleEvents()
 			}
 			case SDL_KEYDOWN:
 			{
-				int scancode = event.key.keysym.scancode;
-				input->keys[scancode] = true;
+				n_scancode = event.key.keysym.scancode;
+				n_input->keys[n_scancode] = true;
 				break;
 			}
 			case SDL_KEYUP:
 			{
-				int scancode = event.key.keysym.scancode;
-				input->keys[scancode] = false;
+				n_scancode = event.key.keysym.scancode;
+				n_input->keys[n_scancode] = false;
 				break;
 			}
 		}
 	}
+	Input::evaluateKeyState(n_scancode);
 }
 
 // Entities
@@ -105,4 +109,5 @@ void Engine::clean()
 #pragma region Time
 Time::Time() {}
 Time::~Time() {}
+float Time::deltaTime = 0.f;
 #pragma endregion

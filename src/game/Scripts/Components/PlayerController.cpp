@@ -3,30 +3,27 @@
 #include <iostream>
 
 extern Engine* n_engine;
+extern Input* n_input;
 
+int counter = 0;
 void PlayerController::start()
 {
-	speed = 180;
+	speed = 300.f;
 }
 
 void PlayerController::update()
 {
-	if (n_engine->input->GetKeyDown(SDL_SCANCODE_W))
+	if (Input::GetKeyDown(SDL_SCANCODE_W))
 	{
-		owner->transform->position.y -= speed * n_engine->time->deltaTime;
 	}
-	if (n_engine->input->GetKeyDown(SDL_SCANCODE_S))
+	if (Input::GetKey(SDL_SCANCODE_W))
 	{
-		owner->transform->position.y += speed * n_engine->time->deltaTime;
 	}
-	if (n_engine->input->GetKeyDown(SDL_SCANCODE_A))
+	if (Input::GetKeyUp(SDL_SCANCODE_W))
 	{
-		owner->transform->position.x -= speed * n_engine->time->deltaTime;
 	}
-	if (n_engine->input->GetKeyDown(SDL_SCANCODE_D))
-	{
-		owner->transform->position.x += speed * n_engine->time->deltaTime;
-	}
+
+	std::cout << counter << std::endl;
 }
 
 void PlayerController::onCollisionEnter(Collider* collider)

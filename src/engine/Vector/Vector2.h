@@ -6,7 +6,7 @@ struct Vector2
 	Vector2();
 	~Vector2();
 
-	Vector2(int newX, int newY);
+	Vector2(float newX, float newY);
 
 	Vector2& operator=(const Vector2& rhs);
 	Vector2& operator+=(const Vector2& rhs);

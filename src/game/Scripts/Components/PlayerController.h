@@ -4,7 +4,7 @@
 class PlayerController : public Component
 {
 public:
-	int speed;
+	float speed;
 public:
 	void start() override;
 	void update() override;

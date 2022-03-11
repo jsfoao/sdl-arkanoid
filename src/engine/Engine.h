@@ -24,7 +24,7 @@ public:
 	~Time();
 
 public:
-	float deltaTime;
+	static float deltaTime;
 };
 #pragma endregion
 
@@ -34,7 +34,6 @@ public:
 	bool isRunning;
 	Window* window;
 	SDL_Renderer* renderer;
-	Input* input;
 	Time* time;
 	std::vector<Entity*> entities;
 	std::vector<Collider*> colliders;
