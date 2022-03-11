@@ -14,6 +14,7 @@ void PlayerController::start()
 
 void PlayerController::update()
 {
+	Vector2 direction = Vector2(0, 0);
 	if (Input::GetKeyDown(SDL_SCANCODE_W))
 	{
 	}
