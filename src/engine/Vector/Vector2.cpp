@@ -36,11 +36,40 @@ Vector2& Vector2::operator-=(const Vector2& rhs)
 	return *this;
 }
 
-Vector2& Vector2::operator*=(const int& rhs)
+Vector2& Vector2::operator*=(const float& rhs)
 {
 	x *= rhs;
 	y *= rhs;
 	return *this;
+}
+
+Vector2& Vector2::operator/=(const float& rhs)
+{
+	x /= rhs;
+	y /= rhs;
+	return *this;
+}
+
+float Vector2::Magnitude() const
+{
+	return sqrt(x * x + y * y);
+}
+
+Vector2 Vector2::GetNormalized() const
+{
+	float magnitude = Magnitude();
+	return Vector2(x / magnitude, y / magnitude);
+}
+
+float Vector2::Distance(const Vector2& v) const
+{
+	Vector2 diff = *this - v;
+	return diff.Magnitude();
+}
+
+float Vector2::Dot(const Vector2& v1, const Vector2& v2)
+{
+	return (v1.x * v2.x) + (v1.y * v2.y);
 }
 
 void Vector2::print()

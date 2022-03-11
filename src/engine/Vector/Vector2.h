@@ -11,7 +11,8 @@ struct Vector2
 	Vector2& operator=(const Vector2& rhs);
 	Vector2& operator+=(const Vector2& rhs);
 	Vector2& operator-=(const Vector2& rhs);
-	Vector2& operator*=(const int& rhs);
+	Vector2& operator*=(const float& rhs);
+	Vector2& operator/=(const float& rhs);
 
 	friend Vector2 operator+(const Vector2& lhs, const Vector2& rhs)
 	{
@@ -27,7 +28,7 @@ struct Vector2
 		temp.y = lhs.y - rhs.y;
 		return temp;
 	}
-	friend Vector2 operator*(const Vector2& lhs, const int& rhs)
+	friend Vector2 operator*(const Vector2& lhs, const float& rhs)
 	{
 		Vector2 temp;
 		temp.x = lhs.x * rhs;
@@ -35,5 +36,17 @@ struct Vector2
 		return temp;
 	}
 
+	friend Vector2 operator/(const Vector2& lhs, const float& rhs)
+	{
+		Vector2 temp;
+		temp.x = lhs.x / rhs;
+		temp.y = lhs.y / rhs;
+		return temp;
+	}
+
+	Vector2 GetNormalized() const;
+	float Magnitude() const;
+	float Distance(const Vector2& v) const;
+	static float Dot(const Vector2& v1, const Vector2& v2);
 	void print();
 };
