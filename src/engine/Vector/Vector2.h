@@ -21,7 +21,7 @@ struct Vector2
 		temp.y = lhs.y + rhs.y;
 		return temp;
 	}
-	friend Vector2 operator-(Vector2& lhs, const Vector2& rhs)
+	friend Vector2 operator-(const Vector2& lhs, const Vector2& rhs)
 	{
 		Vector2 temp;
 		temp.x = lhs.x - rhs.x;

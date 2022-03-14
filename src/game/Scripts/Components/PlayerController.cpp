@@ -5,23 +5,18 @@
 extern Engine* n_engine;
 extern Input* n_input;
 
+Rigidbody* rb;
 void PlayerController::start()
 {
 	speed = 300.f;
 	Instantiate(new Box(), Vector2(300, 300), Vector2(32, 32));
 	Instantiate(new Box(), Vector2(500, 500), Vector2(32, 32));
+	rb = owner->getComponent<Rigidbody>();
 }
 
 void PlayerController::update()
 {
-	Vector2 direction = Vector2(0, 0);
-	if (Input::GetKeyDown(SDL_SCANCODE_W))
-	{
-	}
 	if (Input::GetKey(SDL_SCANCODE_W))
-	{
-	}
-	if (Input::GetKeyUp(SDL_SCANCODE_W))
 	{
 	}
 }

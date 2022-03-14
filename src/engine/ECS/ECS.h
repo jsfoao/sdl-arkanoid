@@ -35,6 +35,7 @@ public:
 		return newComponent;
 	}
 
+	// check dynamic casting
 	template <typename T>
 	T* getComponent()
 	{
