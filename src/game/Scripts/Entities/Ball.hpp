@@ -14,6 +14,7 @@ public:
 	{
 		addComponent<Renderer>();
 		transform->scale = Vector2(10, 10);
+		transform->position = Vector2(600, 600);
 
 		BoxCollider* collider = addComponent<BoxCollider>();
 		collider->layer = Layer_Ball;

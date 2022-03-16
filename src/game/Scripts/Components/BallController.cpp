@@ -1,22 +1,32 @@
 #include "BallController.h"
 #include "../src/engine/Engine.h"
 
-static Rigidbody* rb;
-static Vector2 direction;
-static BoxCollider* boxCollider;
-
 extern Engine* n_engine;
+extern Entity* player;
+
 void BallController::start()
 {
 	rb = owner->getComponent<Rigidbody>();
 	boxCollider = owner->getComponent<BoxCollider>();
-	direction = Vector2::up;
+	direction = Vector2::down;
 	speed = 200.f;
 	angleFactor = 2.f;
 	damage = 1;
 }
 void BallController::update()
 {
+	if (Input::GetKeyDown(SDL_SCANCODE_SPACE) && holding == true)
+	{
+		std::cout << "space" << std::endl;
+		direction = Vector2::up;
+		holding = false;
+	}
+
+	if (holding)
+	{
+		owner->transform->position = player->transform->position + Vector2(0.f, -20.f);
+		return;
+	}
 	rb->velocity = direction.GetNormalized() * speed;
 	WindowCollision();
 }
@@ -48,6 +58,11 @@ void BallController::OnCollisionEnter(Collider* collider)
 	if (collider->layer == Layer_Player)
 	{
 		direction.x = - (widthX / collider->owner->getComponent<PlayerController>()->width) * angleFactor;
+	}
+
+	if (collider->layer == Layer_Brick)
+	{
+		collider->owner->getComponent<BrickController>()->Damage(damage);
 	}
 }
 

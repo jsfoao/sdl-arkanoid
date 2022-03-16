@@ -4,6 +4,8 @@ class BrickController : public Component
 {
 public:
 	int health = 3;
+	int ballChance;
+
 public:
 	void start() override;
 	void OnCollisionEnter(Collider* collider) override;

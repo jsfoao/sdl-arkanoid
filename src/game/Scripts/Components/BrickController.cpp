@@ -5,15 +5,8 @@
 void BrickController::start()
 {
 	health = 3;
+	ballChance = 5;
 	SetColor();
-}
-
-void BrickController::OnCollisionEnter(Collider* collider)
-{
-	if (collider->layer == Layer_Ball)
-	{
-		Damage(collider->owner->getComponent<BallController>()->damage);
-	}
 }
 
 void BrickController::Damage(int value)
@@ -22,6 +15,12 @@ void BrickController::Damage(int value)
 	SetColor();
 	if (health <= 0)
 	{
+		float random = rand() % 100;
+		std::cout << random << std::endl;
+		if (random <= ballChance)
+		{
+			Instantiate(new Ball(), owner->transform->position);
+		}
 		Destroy(owner);
 	}
 }

@@ -9,7 +9,7 @@ int main()
 
 	Uint64 previous_ticks = SDL_GetPerformanceCounter();
 
-	n_engine->init("Nata Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
+	n_engine->init("Nata Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 600, false);
 	n_engine->start();
 	while (n_engine->running())
 	{

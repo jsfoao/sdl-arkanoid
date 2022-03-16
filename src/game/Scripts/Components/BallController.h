@@ -8,6 +8,10 @@ public:
 	float speed;
 	int damage;
 	float angleFactor;
+	bool holding = false;
+	Vector2 direction = Vector2::down;
+	Rigidbody* rb;
+	BoxCollider* boxCollider;
 
 public:
 	void start() override;

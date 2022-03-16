@@ -10,6 +10,12 @@ int n_scancode = 0;
 Entity* Instantiate(Entity* entity)
 {
 	n_engine->addEntity(entity);
+
+	for (int i = entity->components.size() - 1; i >= 0; i--)
+	{
+		entity->components[i]->start();
+	}
+
 	return entity;
 };
 
@@ -17,6 +23,12 @@ Entity* Instantiate(Entity* entity, Vector2 position)
 {
 	entity->transform->position = position;
 	n_engine->addEntity(entity);
+
+	for (int i = entity->components.size() - 1; i >= 0; i--)
+	{
+		entity->components[i]->start();
+	}
+
 	return entity;
 };
 

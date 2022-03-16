@@ -2,6 +2,9 @@
 #include "SDL/SDL.h"
 
 extern Engine* n_engine;
+
+GameManager* gameManager = nullptr;
+
 void GenerateMap();
 
 Entity* player = nullptr;
@@ -9,10 +12,12 @@ Entity* ball = nullptr;
 
 void GameManager::start()
 {
-	player = Instantiate(new Player(), Vector2(400, 560));
-	ball = Instantiate(new Ball(), Vector2(400, 500));
-
+	gameManager = this;
 	GenerateMap();
+
+	player = Instantiate(new Player(), Vector2(n_engine->window->width / 2, n_engine->window->height - 50.f));
+	ball = Instantiate(new Ball(), Vector2(400, 500));
+	ball->getComponent<BallController>()->holding = true;
 }
 
 static void GenerateMap()

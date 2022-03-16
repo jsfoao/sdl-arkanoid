@@ -127,6 +127,7 @@
     <ClInclude Include="src\game\Scripts\Entities\Ball.hpp" />
     <ClInclude Include="src\game\Scripts\Entities\Brick.hpp" />
     <ClInclude Include="src\game\Scripts\Entities\Player.hpp" />
+    <ClInclude Include="src\game\Scripts\Entities\Wall.hpp" />
     <ClInclude Include="src\game\Scripts\GameManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
