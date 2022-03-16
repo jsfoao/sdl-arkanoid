@@ -2,7 +2,10 @@
 #include <iostream>
 #include "../Engine.h"
 
-Entity::Entity(){}
+Entity::Entity()
+{
+	transform = addComponent<Transform>();
+}
 
 Entity::~Entity() {}
 
@@ -15,6 +18,10 @@ void Entity::start()
 {
 	for (int i = components.size() - 1; i >= 0; i--)
 	{
+		if (components.size() == 0)
+		{
+			return;
+		}
 		components[i]->start();
 	}
 }
@@ -25,6 +32,10 @@ void Entity::update()
 
 	for (int i = components.size() - 1; i >= 0; i--)
 	{
+		if (components.size() == 0)
+		{
+			return;
+		}
 		components[i]->update();
 	}
 }
@@ -35,14 +46,30 @@ void Entity::render()
 
 	for (int i = components.size() - 1; i >= 0; i--)
 	{
+		if (components.size() == 0)
+		{
+			return;
+		}
 		components[i]->render();
 	}
 }
 
 Component::~Component() {}
 void Component::start() {}
-void Component::update() {}
-void Component::render() {}
+void Component::update() 
+{
+	if (!active)
+	{
+		return;
+	}
+}
+void Component::render() 
+{
+	if (!active)
+	{
+		return;
+	}
+}
 void Component::OnCollisionEnter(Collider* collider) {}
 void Component::OnCollisionStay(Collider* collider) {}
 void Component::OnCollisionExit(Collider* collider) {}

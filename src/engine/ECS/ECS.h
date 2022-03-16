@@ -9,6 +9,7 @@ class Component;
 class Transform;
 class Renderer;
 class Collider;
+class Rigidbody;
 
 class Entity
 {

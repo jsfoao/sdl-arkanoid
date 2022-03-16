@@ -3,18 +3,22 @@
 #include <string>
 #include <vector>
 #include <stdio.h>
+#include <stdlib.h>
 #include <SDL/SDL.h>
+
 #include "Vector/Vector2.h"
 #include "Color/Color.h"
 #include "Window/Window.h"
 #include "Input/Input.h"
+
 #include "ECS/ECS.h"
 #include "Components/Core/Transform.h"
 #include "Components/Core/Renderer.h"
 #include "Components/Core/Collider.h"
-#include "Entities/Core/CoreEntities.h"
+#include "Components/Core/Rigidbody.h"
 
-#include "../game/Game.h"
+#include "Entities/Core/CoreEntities.h"
+#include "../game/Scripts/GameManager.h"
 
 #pragma region Time
 class Time

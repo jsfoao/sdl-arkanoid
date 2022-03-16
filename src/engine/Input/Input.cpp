@@ -13,8 +13,7 @@ bool Input::GetKeyDown(int scancode)
 
 bool Input::GetKey(int scancode)
 {
-	return (n_input->keyStates[scancode] == KeyState::Hold ||
-			n_input->keyStates[scancode] == KeyState::Down);
+	return n_input->keys[scancode] == 1;
 }
 
 bool Input::GetKeyUp(int scancode)
@@ -24,28 +23,25 @@ bool Input::GetKeyUp(int scancode)
 
 void Input::evaluateKeyState(int scancode)
 {
-	// none
+	// No input
 	if (n_input->keys[scancode] == false && n_input->keyDown[scancode] == false)
 	{
 		n_input->keyStates[scancode] = KeyState::None;
 		return;
 	}
 
-	// down
 	if (n_input->keys[scancode] == true && n_input->keyDown[scancode] == false)
 	{
 		n_input->keyDown[scancode] = true;
 		n_input->keyStates[scancode] = KeyState::Down;
 	}
-	// hold
-	else if (n_input->keys[scancode] == true && n_input->keyDown[scancode] == true)
-	{
-		n_input->keyStates[scancode] = KeyState::Hold;
-	}
-	// up
 	else if (n_input->keys[scancode] == false && n_input->keyDown[scancode] == true)
 	{
 		n_input->keyDown[scancode] = false;
 		n_input->keyStates[scancode] = KeyState::Up;
+	}
+	else
+	{
+		n_input->keyStates[scancode] = KeyState::Hold;
 	}
 }

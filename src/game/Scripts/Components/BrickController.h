@@ -1,14 +1,13 @@
 #pragma once
 #include "../src/engine/ECS/ECS.h"
-
-class PlayerController : public Component
+class BrickController : public Component
 {
 public:
-	float speed;
-	float width;
-
+	int health = 3;
 public:
 	void start() override;
-	void update() override;
 	void OnCollisionEnter(Collider* collider) override;
+	void Damage(int value);
+	void SetColor();
+	void Disable();
 };

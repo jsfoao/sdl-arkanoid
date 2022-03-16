@@ -6,6 +6,8 @@ class Renderer : public Component
 {
 public:
 	Color color;
+	Color outlineColor;
+	bool outline;
 
 public:
 	Renderer();

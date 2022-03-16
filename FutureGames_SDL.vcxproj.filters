@@ -14,6 +14,9 @@
     <ClCompile Include="src\engine\Components\Core\Collider.cpp" />
     <ClCompile Include="src\game\Scripts\Components\PlayerController.cpp" />
     <ClCompile Include="src\engine\Components\Core\Rigidbody.cpp" />
+    <ClCompile Include="src\game\Scripts\GameManager.cpp" />
+    <ClCompile Include="src\game\Scripts\Components\BallController.cpp" />
+    <ClCompile Include="src\game\Scripts\Components\BrickController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\Engine.h" />
@@ -28,7 +31,12 @@
     <ClInclude Include="src\engine\Components\Core\Collider.h" />
     <ClInclude Include="src\game\Scripts\Components\PlayerController.h" />
     <ClInclude Include="src\engine\Entities\Core\CoreEntities.h" />
-    <ClInclude Include="src\game\Game.h" />
     <ClInclude Include="src\engine\Components\Core\Rigidbody.h" />
+    <ClInclude Include="src\game\Scripts\GameManager.h" />
+    <ClInclude Include="src\game\Scripts\Entities\Brick.hpp" />
+    <ClInclude Include="src\game\Scripts\Entities\Player.hpp" />
+    <ClInclude Include="src\game\Scripts\Entities\Ball.hpp" />
+    <ClInclude Include="src\game\Scripts\Components\BallController.h" />
+    <ClInclude Include="src\game\Scripts\Components\BrickController.h" />
   </ItemGroup>
 </Project>

@@ -1,14 +1,18 @@
 #pragma once
 #include "../src/engine/ECS/ECS.h"
+#include "../src/engine/Components/Core/Rigidbody.h"
 
-class PlayerController : public Component
+class BallController : public Component
 {
 public:
 	float speed;
-	float width;
+	int damage;
+	float angleFactor;
 
 public:
 	void start() override;
 	void update() override;
 	void OnCollisionEnter(Collider* collider) override;
+
+	void WindowCollision();
 };

@@ -7,10 +7,12 @@
 
 enum CollisionLayer
 {
-	Default = 0b00000001,
-	Player = 0b00000010,
-	Ground = 0b00000100,
-	All = 0b11111111
+	Layer_Default = 0b00000001,
+	Layer_Player = 0b00000010,
+	Layer_Ground = 0b00000100,
+	Layer_Brick = 0b00001000,
+	Layer_Ball = 0b00010000,
+	Layer_All = 0b11111111
 };
 
 class Collider : public Component
@@ -24,7 +26,8 @@ public:
 	Collider* lastCollider;
 
 	// Gizmos
-	Color color;
+	Color color = Color::Green;
+	bool drawGizmos = false;
 
 public:
 	Collider();
@@ -40,12 +43,14 @@ class BoxCollider : public Collider
 {
 public:
 	Vector2 scale;
+	Vector2 collisionFace;
 
 public:
 	BoxCollider();
 	void update() override;
 	void render() override;
 	bool isColliding(Collider* collider);
+	void evaluateCollision(Collider* collider);
 };
 bool aabb_intersect(const BoxCollider* a, const BoxCollider* b);
 

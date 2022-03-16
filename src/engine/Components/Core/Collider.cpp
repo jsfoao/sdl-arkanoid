@@ -6,8 +6,8 @@ extern Engine* n_engine;
 #pragma region Collider
 Collider::Collider()
 {
-	layer = Default;
-	collisionLayer = Default;
+	layer = Layer_Default;
+	collisionLayer = Layer_Default;
 	n_engine->colliders.push_back(this);
 }
 
@@ -24,7 +24,7 @@ Collider::~Collider()
 
 void Collider::update()
 {
-
+	Component::update();
 }
 
 void Collider::notifyComponentsEnter(Collider* collider)
@@ -68,10 +68,44 @@ bool BoxCollider::isColliding(Collider* collider)
 	}
 	return false;
 }
+
+void BoxCollider::evaluateCollision(Collider* collider)
+{
+	Transform* self = owner->transform;
+	Transform* other = collider->owner->transform;
+
+	Vector2 diff = self->position - other->position;
+	float scaleDiff = (self->scale.y / 2) + (other->scale.y / 2);
+
+	if (abs(diff.y) >= scaleDiff - 2.f)
+	{
+		if (diff.y > 0)
+		{
+			collisionFace = Vector2::up;
+		}
+		else
+		{
+			collisionFace = Vector2::down;
+		}
+	}
+	else
+	{
+		if (diff.x > 0)
+		{
+			collisionFace = Vector2::left;
+		}
+		else
+		{
+			collisionFace = Vector2::right;
+		}
+	}
+}
+
 void BoxCollider::update()
 {
 	Collider::update();
 	position = owner->transform->position + offset;
+	scale = owner->transform->scale + (Vector2::one * 5.f);
 
 	for (Collider* collider : n_engine->colliders)
 	{
@@ -81,6 +115,7 @@ void BoxCollider::update()
 		{
 			if (lastCollider != collider)
 			{
+				evaluateCollision(collider);
 				lastCollider = collider;
 				notifyComponentsEnter(collider);
 			}
@@ -101,6 +136,11 @@ void BoxCollider::update()
 }
 void BoxCollider::render()
 {
+	Component::update();
+	if (!drawGizmos)
+	{
+		return;
+	}
 	SDL_SetRenderDrawColor(owner->sdl_renderer, color.r, color.g, color.b, color.a);
 	SDL_Rect rect =
 	{
@@ -114,13 +154,12 @@ void BoxCollider::render()
 }
 bool aabb_intersect(const BoxCollider* a, const BoxCollider* b)
 {
-	return
-		(
-			a->position.x < b->position.x + b->scale.x &&
-			a->position.x + a->scale.x > b->position.x &&
-			a->position.y < b->position.y + b->scale.y &&
-			a->position.y + a->scale.y > b->position.y
-			);
+	return (
+		a->position.x + (a->scale.x / 2) > b->position.x - (b->scale.x / 2) &&
+		b->position.x + (b->scale.x / 2) > a->position.x - (a->scale.x / 2) &&
+		a->position.y + (a->scale.y / 2) > b->position.y - (b->scale.y / 2) &&
+		b->position.y + (b->scale.y / 2) > a->position.y - (a->scale.y / 2)
+		);
 }
 #pragma endregion
 

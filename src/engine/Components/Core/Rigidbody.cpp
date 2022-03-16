@@ -2,5 +2,6 @@
 
 void Rigidbody::update()
 {
-	owner->transform->position += velocity;
+	Component::update();
+	owner->transform->position += velocity * Time::deltaTime;
 }

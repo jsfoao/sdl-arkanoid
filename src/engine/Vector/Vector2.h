@@ -1,7 +1,7 @@
 #pragma once
 struct Vector2
 {
-	int x, y;
+	float x, y;
 
 	Vector2();
 	~Vector2();
@@ -44,9 +44,21 @@ struct Vector2
 		return temp;
 	}
 
+	friend bool operator==(const Vector2& lhs, const Vector2& rhs)
+	{
+		return (lhs.x == rhs.x && lhs.y == rhs.y);
+	}
+
 	Vector2 GetNormalized() const;
 	float Magnitude() const;
 	float Distance(const Vector2& v) const;
 	static float Dot(const Vector2& v1, const Vector2& v2);
 	void print();
+
+	const static Vector2 zero;
+	const static Vector2 one;
+	const static Vector2 up;
+	const static Vector2 down;
+	const static Vector2 right;
+	const static Vector2 left;
 };

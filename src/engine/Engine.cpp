@@ -3,7 +3,9 @@
 Engine* n_engine = nullptr;
 Input* n_input = nullptr;
 Time* n_time = nullptr;
+GameManager* n_game = nullptr;
 int n_scancode = 0;
+
 #pragma region Global funcs
 Entity* Instantiate(Entity* entity)
 {
@@ -18,16 +20,12 @@ Entity* Instantiate(Entity* entity, Vector2 position)
 	return entity;
 };
 
-Entity* Instantiate(Entity* entity, Vector2 position, Vector2 scale)
-{
-	entity->transform->position = position;
-	entity->transform->scale = scale;
-	n_engine->addEntity(entity);
-	return entity;
-};
-
 void Destroy(Entity* entity)
 {
+	for (size_t i = 0; i < entity->components.size(); i++)
+	{
+		delete entity->components[i];
+	}
 	n_engine->removeEntity(entity);
 	delete entity;
 }
@@ -86,17 +84,9 @@ void Engine::handleEvents()
 	Input::evaluateKeyState(n_scancode);
 }
 
-// Entities
-Entity* player = nullptr;
-Entity* empty = nullptr;
-
 void Engine::start() 
 {
-	// Player entity
-	player = Instantiate(new Box(), Vector2(100, 100), Vector2(32, 32));
-	player->addComponent<PlayerController>();
-
-	empty = Instantiate(new Empty());
+	n_game->start();
 
 	for (int i = entities.size() - 1; i >= 0; i--)
 	{
