@@ -1,6 +1,5 @@
 #include "PlayerController.h"
 #include "../src/engine/Engine.h"
-#include <iostream>
 
 extern Engine* n_engine;
 static Rigidbody* rb;
@@ -30,8 +29,4 @@ void PlayerController::update()
 			owner->transform->position.x -= speed * Time::deltaTime;
 		}
 	}
-}
-
-void PlayerController::OnCollisionEnter(Collider* collider)
-{
 }

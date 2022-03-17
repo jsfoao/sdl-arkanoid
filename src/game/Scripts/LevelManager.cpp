@@ -48,19 +48,3 @@ std::string LoadFile(std::string path)
 	}
 	return levelStr;
 }
-
-void ClearLevel()
-{
-	if (mapEntities.size() == 0)
-	{
-		return;
-	}
-
-	Destroy(mapEntities[0]);
-	//while (mapEntities.size() != 0)
-	//{
-	//	Destroy(*mapEntities.end());
-	//	mapEntities.pop_back();
-	//}
-	//mapEntities.clear();
-}

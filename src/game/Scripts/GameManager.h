@@ -11,8 +11,6 @@ class GameManager : Entity
 {
 public:
 	void start();
-	void update();
-	void render();
 
 	void LoadLevel(std::string level);
 	void DamagePlayer();

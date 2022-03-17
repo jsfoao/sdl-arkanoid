@@ -10,5 +10,4 @@ public:
 public:
 	void start() override;
 	void update() override;
-	void OnCollisionEnter(Collider* collider) override;
 };

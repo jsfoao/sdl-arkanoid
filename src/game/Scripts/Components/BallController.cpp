@@ -43,6 +43,7 @@ void BallController::update()
 
 void BallController::OnCollisionEnter(Collider* collider)
 {
+	// General collision behaviour
 	if (boxCollider->collisionFace == Vector2::down)
 	{
 		direction.y = -1;
@@ -61,15 +62,16 @@ void BallController::OnCollisionEnter(Collider* collider)
 		direction.x = 1;
 	}
 
+	// Behaviour on paddle collisions
 	Transform* colTransform = collider->owner->transform;
 	float widthX = colTransform->position.x - owner->transform->position.x;
 
-	// player hits
 	if (collider->layer == Layer_Player)
 	{
 		direction.x = - (widthX / collider->owner->getComponent<PlayerController>()->width) * angleFactor;
 	}
 
+	// Behaviour on brick collision
 	if (collider->layer == Layer_Brick)
 	{
 		collider->owner->getComponent<BrickController>()->Damage(damage);

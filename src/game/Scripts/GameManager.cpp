@@ -26,15 +26,6 @@ void GameManager::start()
 	std::cout << "Health: " << health << std::endl;
 }
 
-void GameManager::update()
-{
-}
-
-void GameManager::render()
-{
-}
-
-// initial setup
 void GameManager::LoadLevel(std::string level)
 {
 	GenerateMap(level);
