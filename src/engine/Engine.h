@@ -71,6 +71,20 @@ public:
 		}
 	}
 
+	void resetScene()
+	{
+		for (size_t i = 0; i < entities.size(); i++)
+		{
+			for (size_t j = 0; j < entities[i]->components.size(); j++)
+			{
+				delete entities[i]->components[j];
+			}
+			removeEntity(entities[i]);
+			delete entities[i];
+		}
+		entities.clear();
+	}
+
 	bool running() { return isRunning; }
 };
 

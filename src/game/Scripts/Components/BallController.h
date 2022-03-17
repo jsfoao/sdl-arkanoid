@@ -8,8 +8,8 @@ public:
 	float speed;
 	int damage;
 	float angleFactor;
-	bool holding = false;
-	Vector2 direction = Vector2::down;
+	bool holding;
+	Vector2 direction;
 	Rigidbody* rb;
 	BoxCollider* boxCollider;
 

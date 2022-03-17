@@ -2,6 +2,7 @@
 #include "../src/engine/Engine.h"
 #include <iostream>
 
+extern Engine* n_engine;
 static Rigidbody* rb;
 static float speed;
 
@@ -16,48 +17,21 @@ void PlayerController::update()
 {
 	if (Input::GetKey(SDL_SCANCODE_D))
 	{
-		owner->transform->position.x += speed * Time::deltaTime;
+		if (!(owner->transform->position.x + speed * Time::deltaTime > n_engine->window->width - width / 2))
+		{
+			owner->transform->position.x += speed * Time::deltaTime;
+		}
 	}
 
 	if (Input::GetKey(SDL_SCANCODE_A))
 	{
-		owner->transform->position.x -= speed * Time::deltaTime;
+		if (!(owner->transform->position.x - speed * Time::deltaTime < 0.f + width / 2))
+		{
+			owner->transform->position.x -= speed * Time::deltaTime;
+		}
 	}
-
-	//if (Input::GetKey(SDL_SCANCODE_W))
-	//{
-	//	owner->transform->position.y -= speed * Time::deltaTime;
-	//}
-
-	//if (Input::GetKey(SDL_SCANCODE_S))
-	//{
-	//	owner->transform->position.y += speed * Time::deltaTime;
-	//}
 }
 
 void PlayerController::OnCollisionEnter(Collider* collider)
 {
 }
-
-
-
-
-
-
-
-
-
-
-
-// friction notes
-// move
-//if (move_right())
-//{
-//	velX += speed * deltaTime;
-//}
-//
-//// apply friction
-//velX -= velX * friction_coefficient * deltaTime;
-//
-//// apply velocity to position
-//posX += velX * deltaTime;

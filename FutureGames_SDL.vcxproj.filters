@@ -44,5 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="src\game\Levels\Level01.txt" />
+    <Text Include="src\game\Levels\Level02.txt" />
+    <Text Include="src\game\Levels\Level03.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="res\roboto.ttf" />
   </ItemGroup>
 </Project>

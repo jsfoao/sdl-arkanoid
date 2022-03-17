@@ -1,10 +1,11 @@
 #include "LevelManager.h"
 #include "../src/engine/Engine.h"
+#include <vector>
 
-#define WIDTH 16
+#define WIDTH 12
 #define HEIGHT 12
 
-std::ifstream inFile;
+std::vector<Entity*> mapEntities;
 
 void GenerateMap(std::string levelStr)
 {
@@ -15,17 +16,20 @@ void GenerateMap(std::string levelStr)
 
 		if (levelStr[i] == '#')
 		{
-			Instantiate(new Brick(), Vector2((x + 0.5) * 50, (y + 0.5) * 25));
+			Entity* newEntity = Instantiate(new Brick(), Vector2((x + 0.5f) * 50, (y + 0.5f) * 25));
+			mapEntities.push_back(newEntity);
 		}
 		else if (levelStr[i] == '$')
 		{
-			Instantiate(new Wall(), Vector2((x + 0.5) * 50, (y + 0.5) * 25));
+			Entity* newEntity = Instantiate(new Wall(), Vector2((x + 0.5f) * 50, (y + 0.5f) * 25));
+			mapEntities.push_back(newEntity);
 		}
 	}
 }
 
 std::string LoadFile(std::string path)
 {
+	std::ifstream inFile;
 	inFile.open(path);
 	if (!inFile)
 	{
@@ -33,7 +37,7 @@ std::string LoadFile(std::string path)
 		exit(1);
 	}
 
-	std::cout << "Found file on " + path << std::endl;
+	std::cout << "Loaded level on " + path << std::endl;
 
 	std::string levelStr;
 	std::string line;
@@ -43,4 +47,20 @@ std::string LoadFile(std::string path)
 		levelStr += line;
 	}
 	return levelStr;
+}
+
+void ClearLevel()
+{
+	if (mapEntities.size() == 0)
+	{
+		return;
+	}
+
+	Destroy(mapEntities[0]);
+	//while (mapEntities.size() != 0)
+	//{
+	//	Destroy(*mapEntities.end());
+	//	mapEntities.pop_back();
+	//}
+	//mapEntities.clear();
 }

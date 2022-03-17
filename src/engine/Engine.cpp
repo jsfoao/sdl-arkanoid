@@ -108,6 +108,8 @@ void Engine::start()
 
 void Engine::update()
 {
+	n_game->update();
+
 	for (int i = entities.size() - 1; i >= 0; i--)
 	{
 		entities[i]->update();

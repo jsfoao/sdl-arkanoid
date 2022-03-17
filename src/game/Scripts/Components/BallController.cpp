@@ -3,21 +3,22 @@
 
 extern Engine* n_engine;
 extern Entity* player;
+extern GameManager* n_game;
+extern std::vector<Ball*> balls;
 
 void BallController::start()
 {
 	rb = owner->getComponent<Rigidbody>();
 	boxCollider = owner->getComponent<BoxCollider>();
-	direction = Vector2::down;
 	speed = 200.f;
 	angleFactor = 2.f;
+	direction = Vector2(1, 1).GetNormalized();
 	damage = 1;
 }
 void BallController::update()
 {
 	if (Input::GetKeyDown(SDL_SCANCODE_SPACE) && holding == true)
 	{
-		std::cout << "space" << std::endl;
 		direction = Vector2::up;
 		holding = false;
 	}
@@ -25,10 +26,19 @@ void BallController::update()
 	if (holding)
 	{
 		owner->transform->position = player->transform->position + Vector2(0.f, -20.f);
+		direction = Vector2::zero;
 		return;
 	}
 	rb->velocity = direction.GetNormalized() * speed;
+
 	WindowCollision();
+	if (owner->transform->position.y + (owner->transform->scale.y / 2) >= n_engine->window->height)
+	{
+		n_game->DestroyBall();
+		n_game->DamagePlayer();
+		Destroy(owner);
+	}
+
 }
 
 void BallController::OnCollisionEnter(Collider* collider)
@@ -68,11 +78,7 @@ void BallController::OnCollisionEnter(Collider* collider)
 
 void BallController::WindowCollision()
 {
-	if (owner->transform->position.y + (owner->transform->scale.y / 2) >= n_engine->window->height)
-	{
-		direction.y = -1;
-	}
-	else if (owner->transform->position.y - (owner->transform->scale.y / 2) <= 0)
+	if (owner->transform->position.y - (owner->transform->scale.y / 2) <= 0)
 	{
 		direction.y = 1;
 	}

@@ -2,6 +2,7 @@
 #include "../src/engine/Engine.h"
 #include <iostream>
 
+extern int ballCount;
 void BrickController::start()
 {
 	health = 3;
@@ -20,6 +21,7 @@ void BrickController::Damage(int value)
 		if (random <= ballChance)
 		{
 			Instantiate(new Ball(), owner->transform->position);
+			ballCount++;
 		}
 		Destroy(owner);
 	}
