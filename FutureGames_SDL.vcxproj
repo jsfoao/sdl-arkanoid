@@ -106,6 +106,7 @@
     <ClCompile Include="src\engine\Vector\Vector2.cpp" />
     <ClCompile Include="src\engine\Window\Window.cpp" />
     <ClCompile Include="src\game\Scripts\GameManager.cpp" />
+    <ClCompile Include="src\game\Scripts\LevelManager.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +130,10 @@
     <ClInclude Include="src\game\Scripts\Entities\Player.hpp" />
     <ClInclude Include="src\game\Scripts\Entities\Wall.hpp" />
     <ClInclude Include="src\game\Scripts\GameManager.h" />
+    <ClInclude Include="src\game\Scripts\LevelManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\game\Levels\Level01.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

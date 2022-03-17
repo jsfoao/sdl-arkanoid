@@ -12,6 +12,7 @@ enum CollisionLayer
 	Layer_Ground = 0b00000100,
 	Layer_Brick = 0b00001000,
 	Layer_Ball = 0b00010000,
+	Layer_Wall = 0b00100000,
 	Layer_All = 0b11111111
 };
 

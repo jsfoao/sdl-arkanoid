@@ -8,7 +8,6 @@ public:
 
 public:
 	void start() override;
-	void OnCollisionEnter(Collider* collider) override;
 	void Damage(int value);
 	void SetColor();
 	void Disable();

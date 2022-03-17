@@ -17,6 +17,7 @@
     <ClCompile Include="src\game\Scripts\GameManager.cpp" />
     <ClCompile Include="src\game\Scripts\Components\BallController.cpp" />
     <ClCompile Include="src\game\Scripts\Components\BrickController.cpp" />
+    <ClCompile Include="src\game\Scripts\LevelManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\Engine.h" />
@@ -39,5 +40,9 @@
     <ClInclude Include="src\game\Scripts\Components\BallController.h" />
     <ClInclude Include="src\game\Scripts\Components\BrickController.h" />
     <ClInclude Include="src\game\Scripts\Entities\Wall.hpp" />
+    <ClInclude Include="src\game\Scripts\LevelManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\game\Levels\Level01.txt" />
   </ItemGroup>
 </Project>

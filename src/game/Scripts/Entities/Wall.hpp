@@ -1,10 +1,10 @@
 #pragma once
 #include "../src/engine/Engine.h"
 
-class Brick : public Entity
+class Wall : public Entity
 {
 public:
-	Brick()
+	Wall()
 	{
 		transform->scale = Vector2(50, 25);
 		Renderer* renderer;
@@ -16,7 +16,7 @@ public:
 		renderer->outline = true;
 
 		collider = addComponent<BoxCollider>();
-		collider->layer = Layer_Brick;
+		collider->layer = Layer_Wall;
 		collider->collisionLayer = Layer_Ball;
 		collider->scale = transform->scale;
 	}

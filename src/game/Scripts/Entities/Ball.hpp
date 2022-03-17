@@ -18,7 +18,7 @@ public:
 
 		BoxCollider* collider = addComponent<BoxCollider>();
 		collider->layer = Layer_Ball;
-		collider->collisionLayer = Layer_Brick + Layer_Player;
+		collider->collisionLayer = Layer_Brick + Layer_Wall + Layer_Player;
 		collider->scale = transform->scale;
 
 		addComponent<Rigidbody>();
