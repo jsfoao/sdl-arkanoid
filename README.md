@@ -9,6 +9,7 @@ This repo contains an Arkanoid clone made in SDL2 and C++. This project features
 
 ## Examples
 Demo
+
 ![Demo](/docs/arkanoid.gif  "Demo")
 
 Another example of a level being loaded from file
