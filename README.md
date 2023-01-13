@@ -13,6 +13,7 @@ Demo
 ![Demo](/docs/arkanoid.gif  "Demo")
 
 Another example of a level being loaded from file
+
 ![Demo](/docs/level_1.png  "Level")
 
 ## Dependencies
